@@ -1,8 +1,10 @@
 import json
 import zipfile
-# huggingface-cli download ChiyanChandru/VocieModel --repo-type=dataset --local-dir=F:\Applio-3.1.1\Applio-3.1.1\Voicemodels\download --file downloda command 
-# huggingface-cli login --token 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 -login command
+
 # pip install -U "huggingface_hub[cli]" module command
+# huggingface-cli login --token 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 -login command
+# huggingface-cli download ChiyanChandru/VocieModel --repo-type=dataset --local-dir=F:\Applio-3.1.1\Applio-3.1.1\Voicemodels\download --file downloda command 
+
 
 def extract_zip(zip_path, extract_to):
     """

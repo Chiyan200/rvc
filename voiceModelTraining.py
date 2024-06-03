@@ -68,32 +68,32 @@ continueTrainingTrue=False
 
 
 voiceActorArr =[
-    # "arjun",
+    "arjun",
     "keerthySuresh",
     "mysskin",
     "siddharth",
     "sjSuriya",
-    
-    # "berlin",
-    # "denver",
-    # "ladyPloice",
-    # "nairobi",
-    # "pelurmo",
-    # "policeOffice",
-    # "tokyo"
+    "andrea",
+    "berlin",
+    "denver",
+    "ladyPloice",
+    "nairobi",
+    "pelurmo",
+    "policeOffice",
+    "tokyo"
 ]
 
 def runFull(actor):
  initialData={
     "modelName":actor,
-    "dataPath":rf"F:\voiceModel\finalChareactersVoices\{actor}",
+    "dataPath":rf"F:\voiceModel\finalChareactersVoices\{actor}\{actor}.wav",
     "sampleRate":48000,
     "version":"v2",
     "f0method":"harvest",
     "hopLength":128,
-    "batch_size":4,
-    "saveEachEpoch":1,
-    "totalEpoch":2,
+    "batch_size":60,
+    "saveEachEpoch":600,
+    "totalEpoch":600,
     "pitchGuidance":True,
     "pretrained":True,
     "saveOnlyLatest":True,
@@ -164,14 +164,14 @@ def runFull(actor):
 def runTrain(actor):
  initialData={
     "modelName":actor,
-    "dataPath":rf"F:\voiceModel\finalChareactersVoices\{actor}",
+    "dataPath":rf"F:\voiceModel\finalChareactersVoices\{actor}\{actor}.wav",
     "sampleRate":48000,
     "version":"v2",
     "f0method":"harvest",
     "hopLength":128,
-    "batch_size":4,
-    "saveEachEpoch":501,
-    "totalEpoch":501,
+    "batch_size":60,
+    "saveEachEpoch":600,
+    "totalEpoch":600,
     "pitchGuidance":True,
     "pretrained":True,
     "saveOnlyLatest":True,
