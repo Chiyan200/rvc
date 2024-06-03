@@ -86,7 +86,7 @@ voiceActorArr =[
 def runFull(actor):
  initialData={
     "modelName":actor,
-    "dataPath":rf"F:\voiceModel\finalChareactersVoices\{actor}\{actor}.wav",
+    "dataPath":rf"F:\softwareSrc\Applio-3.1.1\rvc\Voicemodels\download\{actor}",
     "sampleRate":48000,
     "version":"v2",
     "f0method":"harvest",
@@ -164,7 +164,7 @@ def runFull(actor):
 def runTrain(actor):
  initialData={
     "modelName":actor,
-    "dataPath":rf"F:\voiceModel\finalChareactersVoices\{actor}\{actor}.wav",
+    "dataPath":rf"F:\softwareSrc\Applio-3.1.1\rvc\Voicemodels\download\{actor}",
     "sampleRate":48000,
     "version":"v2",
     "f0method":"harvest",
