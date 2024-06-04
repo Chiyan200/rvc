@@ -64,10 +64,10 @@ def get_pretrained_list(suffix):
 
 pretraineds_list_d = get_pretrained_list("D")
 pretraineds_list_g = get_pretrained_list("G")
-continueTrainingTrue=False
+continueTrainingTrue = False
 
 
-voiceActorArr =[
+voiceActorArr = [
     "arjun",
     "keerthySuresh",
     "mysskin",
@@ -80,129 +80,131 @@ voiceActorArr =[
     "nairobi",
     "pelurmo",
     "policeOffice",
-    "tokyo"
+    "tokyo",
 ]
 
+
 def runFull(actor):
- initialData={
-    "modelName":actor,
-    "dataPath":rf"F:\softwareSrc\Applio-3.1.1\rvc\Voicemodels\download\{actor}",
-    "sampleRate":48000,
-    "version":"v2",
-    "f0method":"harvest",
-    "hopLength":128,
-    "batch_size":60,
-    "saveEachEpoch":600,
-    "totalEpoch":600,
-    "pitchGuidance":True,
-    "pretrained":True,
-    "saveOnlyLatest":True,
-    "saveEveryWeights":True,
-    "gpu":0,
-    "overTraingDetect":False,
-    "overTraining_thersold":50,
-    "pretrained":True,
-    "custom_pretrained":False
- }
- preprocessor = run_preprocess_script(
-    initialData["modelName"],
-    initialData["dataPath"],
-    initialData['sampleRate']
-    ) # model_name, dataset_path, sampling_rate
+    initialData = {
+        "modelName": actor,
+        "dataPath": rf"F:\softwareSrc\Applio-3.1.1\rvc\Voicemodels\download\{actor}",
+        "sampleRate": 48000,
+        "version": "v2",
+        "f0method": "harvest",
+        "hopLength": 128,
+        "batch_size": 60,
+        "saveEachEpoch": 600,
+        "totalEpoch": 600,
+        "pitchGuidance": True,
+        "pretrained": True,
+        "saveOnlyLatest": True,
+        "saveEveryWeights": True,
+        "gpu": 0,
+        "overTraingDetect": False,
+        "overTraining_thersold": 50,
+        "pretrained": True,
+        "custom_pretrained": False,
+    }
+    preprocessor = run_preprocess_script(
+        initialData["modelName"], initialData["dataPath"], initialData["sampleRate"]
+    )  # model_name, dataset_path, sampling_rate
 
- mName = initialData['modelName']
- if(preprocessor == f"Model {mName} preprocessed successfully."):
+    mName = initialData["modelName"]
+    if preprocessor == f"Model {mName} preprocessed successfully.":
 
-    featureExtract = run_extract_script(
-        initialData["modelName"],
-        initialData["version"],
-        initialData["f0method"],
-        initialData["hopLength"],
-        initialData['sampleRate']
-        ) # model_name, rvc_version, f0method, hop_length, sampling_rate
-
- if(featureExtract == f"Model {mName} extracted successfully.") or continueTrainingTrue == True:
-    index = run_index_script(initialData["modelName"],initialData["version"])
-    if(index == f"Index file for {mName} generated successfully."):
-    
-        run_train_script(
+        featureExtract = run_extract_script(
             initialData["modelName"],
             initialData["version"],
-            str(initialData['saveEachEpoch']),
-            initialData['saveOnlyLatest'],
-            initialData['saveEveryWeights'],
-            str(initialData['totalEpoch']),
-            str(initialData['sampleRate']),
-            str(initialData['batch_size']),
-            str(initialData['gpu']),
-            initialData["pitchGuidance"],
-            initialData['overTraingDetect'],
-            str(initialData['overTraining_thersold']),
-            initialData['pretrained'],
-            initialData['custom_pretrained'] ,
-            [],
-            []
-        )  
-        # model_name,
-        # rvc_version,
-        # save_every_epoch,
-        # save_only_latest,
-        # save_every_weights,
-        # total_epoch,
-        # sampling_rate,
-        # batch_size,
-        # gpu,
-        # pitch_guidance,
-        # overtraining_detector,
-        # overtraining_threshold,
-        # pretrained,
-        # custom_pretrained,
-        # g_pretrained_path=None,
-        # d_pretrained_path=None,
+            initialData["f0method"],
+            initialData["hopLength"],
+            initialData["sampleRate"],
+        )  # model_name, rvc_version, f0method, hop_length, sampling_rate
+
+    if (
+        featureExtract == f"Model {mName} extracted successfully."
+    ) or continueTrainingTrue == True:
+        index = run_index_script(initialData["modelName"], initialData["version"])
+        if index == f"Index file for {mName} generated successfully.":
+
+            run_train_script(
+                initialData["modelName"],
+                initialData["version"],
+                str(initialData["saveEachEpoch"]),
+                initialData["saveOnlyLatest"],
+                initialData["saveEveryWeights"],
+                str(initialData["totalEpoch"]),
+                str(initialData["sampleRate"]),
+                str(initialData["batch_size"]),
+                str(initialData["gpu"]),
+                initialData["pitchGuidance"],
+                initialData["overTraingDetect"],
+                str(initialData["overTraining_thersold"]),
+                initialData["pretrained"],
+                initialData["custom_pretrained"],
+                [],
+                [],
+            )
+            # model_name,
+            # rvc_version,
+            # save_every_epoch,
+            # save_only_latest,
+            # save_every_weights,
+            # total_epoch,
+            # sampling_rate,
+            # batch_size,
+            # gpu,
+            # pitch_guidance,
+            # overtraining_detector,
+            # overtraining_threshold,
+            # pretrained,
+            # custom_pretrained,
+            # g_pretrained_path=None,
+            # d_pretrained_path=None,
 
 
 def runTrain(actor):
- initialData={
-    "modelName":actor,
-    "dataPath":rf"F:\softwareSrc\Applio-3.1.1\rvc\Voicemodels\download\{actor}",
-    "sampleRate":48000,
-    "version":"v2",
-    "f0method":"harvest",
-    "hopLength":128,
-    "batch_size":60,
-    "saveEachEpoch":600,
-    "totalEpoch":600,
-    "pitchGuidance":True,
-    "pretrained":True,
-    "saveOnlyLatest":True,
-    "saveEveryWeights":True,
-    "gpu":0,
-    "overTraingDetect":False,
-    "overTraining_thersold":50,
-    "pretrained":True,
-    "custom_pretrained":False
- }
- run_train_script(
-            initialData["modelName"],
-            initialData["version"],
-            str(initialData['saveEachEpoch']),
-            initialData['saveOnlyLatest'],
-            initialData['saveEveryWeights'],
-            str(initialData['totalEpoch']),
-            str(initialData['sampleRate']),
-            str(initialData['batch_size']),
-            str(initialData['gpu']),
-            initialData["pitchGuidance"],
-            initialData['overTraingDetect'],
-            str(initialData['overTraining_thersold']),
-            initialData['pretrained'],
-            initialData['custom_pretrained'] ,
-            [],
-            []
-        )  
+    initialData = {
+        "modelName": actor,
+        "dataPath": rf"F:\softwareSrc\Applio-3.1.1\rvc\Voicemodels\download\{actor}",
+        "sampleRate": 48000,
+        "version": "v2",
+        "f0method": "harvest",
+        "hopLength": 128,
+        "batch_size": 60,
+        "saveEachEpoch": 600,
+        "totalEpoch": 600,
+        "pitchGuidance": True,
+        "pretrained": True,
+        "saveOnlyLatest": True,
+        "saveEveryWeights": True,
+        "gpu": 0,
+        "overTraingDetect": False,
+        "overTraining_thersold": 50,
+        "pretrained": True,
+        "custom_pretrained": False,
+    }
+    run_train_script(
+        initialData["modelName"],
+        initialData["version"],
+        str(initialData["saveEachEpoch"]),
+        initialData["saveOnlyLatest"],
+        initialData["saveEveryWeights"],
+        str(initialData["totalEpoch"]),
+        str(initialData["sampleRate"]),
+        str(initialData["batch_size"]),
+        str(initialData["gpu"]),
+        initialData["pitchGuidance"],
+        initialData["overTraingDetect"],
+        str(initialData["overTraining_thersold"]),
+        initialData["pretrained"],
+        initialData["custom_pretrained"],
+        [],
+        [],
+    )
+
 
 for actor in voiceActorArr:
- runFull(actor)
+    runFull(actor)
 
 
 # model_name, rvc_version
